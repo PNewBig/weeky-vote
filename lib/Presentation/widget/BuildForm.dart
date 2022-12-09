@@ -32,6 +32,5 @@ class BuildForm extends StatelessWidget {
             )
           ])),
     );
-    ;
   }
 }
