@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:weeky_vote/Controller/AuthController.dart';
 import 'package:weeky_vote/Presentation/Screen/LogInScreen.dart';
+import 'package:weeky_vote/Presentation/Screen/ProfileScreen.dart';
 import 'package:weeky_vote/Presentation/Screen/RegisterScreen.dart';
 import './Presentation/Screen/HomeScreen.dart';
 
@@ -28,7 +29,8 @@ class MyApp extends StatelessWidget {
         routes: {
           '/': (context) => LogInScreen(),
           RegisterScreen.routeName: (context) => RegisterScreen(),
-          HomeScreen.routeName: (context) => HomeScreen()
+          HomeScreen.routeName: (context) => HomeScreen(),
+          ProfileScreen.routeName: (context) => ProfileScreen()
         },
       ),
     );

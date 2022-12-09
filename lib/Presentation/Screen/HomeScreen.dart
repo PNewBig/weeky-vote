@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:weeky_vote/Presentation/Screen/ProfileScreen.dart';
 import 'package:weeky_vote/Presentation/Widget/BuildUserBox.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -13,14 +14,20 @@ class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        body: Container(
-            child: GridView.builder(
-      gridDelegate:
-          SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 2),
-      itemCount: 4,
-      itemBuilder: ((context, index) {
-        return BuildUserBox();
-      }),
-    )));
+      body: Container(
+          child: GridView.builder(
+        gridDelegate:
+            SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 2),
+        itemCount: 4,
+        itemBuilder: ((context, index) {
+          return BuildUserBox();
+        }),
+      )),
+      floatingActionButton: FloatingActionButton(
+          child: Text("+"),
+          onPressed: () {
+            Navigator.of(context).pushNamed(ProfileScreen.routeName);
+          }),
+    );
   }
 }
