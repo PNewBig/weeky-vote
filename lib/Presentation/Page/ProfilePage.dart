@@ -1,29 +1,16 @@
 import 'package:flutter/material.dart';
+import 'package:percent_indicator/circular_percent_indicator.dart';
 
-class PreviewScreen extends StatefulWidget {
-  static const String routeName = "/PreviewScreen";
+class ProfilePage extends StatelessWidget {
   String name;
-  PreviewScreen({required this.name, super.key});
+  ProfilePage({required this.name, super.key});
 
-  @override
-  State<PreviewScreen> createState() => _PreviewScreenState();
-}
-
-void CommentBottomSheet(BuildContext ctx){
-  showModalBottomSheet(context: ctx, builder: (context){
-    return Container(
-      height: 500,
-      child: Text("BottomSheet"));
-  });
-}
-class _PreviewScreenState extends State<PreviewScreen> {
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: Container(
-          child: Column(
+    return Container(
+      child: Column(
         children: [
-                    Container(
+          Container(
               width: double.infinity,
               height: 200,
               decoration: BoxDecoration(
@@ -44,14 +31,29 @@ class _PreviewScreenState extends State<PreviewScreen> {
                           Container(
                             height: 50,
                             width: 150,
-                            child: Card(child: Center(child: Text(widget.name, style: Theme.of(context).textTheme.bodyText1)),))
+                            child: Card(child: Center(child: Text(name, style: Theme.of(context).textTheme.bodyText1)),))
                         ],)
                       ),
+         
+         Container(
+          margin: const EdgeInsets.only(top: 150),
+           child: CircularPercentIndicator(
+                animation: true,
+                radius: 100,
+                lineWidth: 20,
+                percent: 0.4,
+                progressColor: Colors.deepPurple,
+                backgroundColor: Colors.deepPurple.shade100,
+                circularStrokeCap: CircularStrokeCap.round,
+                center: Text(
+                  '40%',
+                  style: Theme.of(context).textTheme.bodyText1,
+                ),
+              ),
+         ),
+          
         ],
-      )),
-      floatingActionButton: FloatingActionButton(onPressed: (){
-        CommentBottomSheet(context);
-      }, child: Icon(Icons.rate_review_outlined)),
+      ),
     );
   }
 }

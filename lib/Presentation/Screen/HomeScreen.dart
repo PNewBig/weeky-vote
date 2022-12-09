@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:weeky_vote/Presentation/Screen/ProfileScreen.dart';
-import 'package:weeky_vote/Presentation/Widget/BuildUserBox.dart';
+import 'package:weeky_vote/Presentation/Page/HomePage.dart';
+import 'package:weeky_vote/Presentation/Page/ProfilePage.dart';
 
 class HomeScreen extends StatefulWidget {
   static const String routeName = "/HomeSreen";
@@ -11,23 +11,28 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
+  int _selectIndex = 0;
+  List<Map<String, Object>> selectedPage = [
+    {'page': HomePage()},
+    {'page': ProfilePage(name: "vanlakhna")}
+  ];
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Container(
-          child: GridView.builder(
-        gridDelegate:
-            SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 2),
-        itemCount: 4,
-        itemBuilder: ((context, index) {
-          return BuildUserBox();
-        }),
-      )),
-      floatingActionButton: FloatingActionButton(
-          child: Text("+"),
-          onPressed: () {
-            Navigator.of(context).pushNamed(ProfileScreen.routeName);
-          }),
+      body: selectedPage[_selectIndex]['page'] as Widget,
+      bottomNavigationBar: BottomNavigationBar(
+          unselectedItemColor: Theme.of(context).primaryColor,
+          selectedItemColor: Colors.grey.withOpacity(0.9),
+          currentIndex: _selectIndex,
+          onTap: (value) {
+            setState(() {
+              _selectIndex = value.toInt();
+            });
+          },
+          items: [
+            BottomNavigationBarItem(icon: Icon(Icons.home), label: "Home"),
+            BottomNavigationBarItem(icon: Icon(Icons.person), label: "Personal")
+          ]),
     );
   }
 }

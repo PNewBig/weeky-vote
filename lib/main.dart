@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:weeky_vote/Controller/AuthController.dart';
 import 'package:weeky_vote/Presentation/Screen/LogInScreen.dart';
-import 'package:weeky_vote/Presentation/Screen/ProfileScreen.dart';
+import 'package:weeky_vote/Presentation/Screen/PreviewScreen.dart';
 import 'package:weeky_vote/Presentation/Screen/RegisterScreen.dart';
 import './Presentation/Screen/HomeScreen.dart';
 
@@ -22,15 +22,16 @@ class MyApp extends StatelessWidget {
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
         theme: ThemeData(
+          primaryColor: Colors.amber,
             textTheme: TextTheme(
-                bodySmall:
-                    TextStyle(fontSize: 14, fontFamily: "defogo notosans"))),
+                bodyText1: TextStyle(fontSize: 18, fontFamily: "defago notosans", color: Colors.black),
+                bodyText2: TextStyle(fontSize: 18, fontFamily: "defago notosans", color: Colors.white))),
         initialRoute: '/',
         routes: {
           '/': (context) => LogInScreen(),
           RegisterScreen.routeName: (context) => RegisterScreen(),
           HomeScreen.routeName: (context) => HomeScreen(),
-          ProfileScreen.routeName: (context) => ProfileScreen()
+          PreviewScreen.routeName : (context) => PreviewScreen(name: "kileang")
         },
       ),
     );
