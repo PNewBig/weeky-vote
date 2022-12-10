@@ -64,6 +64,7 @@ class _LogInScreenState extends State<LogInScreen> {
                             print(_password);
                       Provider.of<AuthController>(context, listen: false)
                 
+
                           .SignUp(_email, _password);
                     })),
             Container(

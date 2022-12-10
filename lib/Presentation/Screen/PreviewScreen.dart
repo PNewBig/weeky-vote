@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import '../widget/BuildForm.dart';
+
 class PreviewScreen extends StatefulWidget {
   static const String routeName = "/PreviewScreen";
   String name;
@@ -88,7 +90,97 @@ class _PreviewScreenState extends State<PreviewScreen> {
       floatingActionButton: FloatingActionButton(
           backgroundColor: Colors.amber,
           onPressed: () {
-            CommentBottomSheet(context);
+            showModalBottomSheet(
+                context: context,
+                builder: (BuildContext) {
+                  return SizedBox(
+                    child: Column(
+                      children: [
+                        Center(
+                          //1.comments
+                          child: Card(
+                              margin: const EdgeInsets.symmetric(
+                                  horizontal: 20, vertical: 10),
+                              elevation: 10,
+                              shape: RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(20)),
+                              child: Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    Container(
+                                        margin: const EdgeInsets.only(
+                                            left: 10, top: 10),
+                                        child: Text("1.Comments",
+                                            style: Theme.of(context)
+                                                .textTheme
+                                                .bodySmall)),
+                                    SizedBox(height: 10),
+                                    Container(
+                                      decoration: BoxDecoration(
+                                          color: Colors.grey,
+                                          borderRadius:
+                                              BorderRadius.circular(10)),
+                                      margin: const EdgeInsets.only(
+                                          left: 10, right: 10, bottom: 10),
+                                      child: TextFormField(
+                                        decoration: InputDecoration(
+                                            contentPadding:
+                                                const EdgeInsets.only(left: 10),
+                                            border: InputBorder.none),
+                                      ),
+                                    )
+                                  ])),
+                        ),
+                        //2. Point
+                        Center(
+                          child: Card(
+                              margin: const EdgeInsets.symmetric(
+                                  horizontal: 20, vertical: 10),
+                              elevation: 10,
+                              shape: RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(20)),
+                              child: Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    Container(
+                                        margin: const EdgeInsets.only(
+                                            left: 10, top: 10),
+                                        child: Text("2.Point",
+                                            style: Theme.of(context)
+                                                .textTheme
+                                                .bodySmall)),
+                                    SizedBox(height: 10),
+                                    Container(
+                                      decoration: BoxDecoration(
+                                          color: Colors.grey,
+                                          borderRadius:
+                                              BorderRadius.circular(10)),
+                                      margin: const EdgeInsets.only(
+                                          left: 10, right: 10, bottom: 10),
+                                      child: TextFormField(
+                                        decoration: InputDecoration(
+                                            contentPadding:
+                                                const EdgeInsets.only(left: 10),
+                                            border: InputBorder.none),
+                                        keyboardType: TextInputType.number,
+                                      ),
+                                    )
+                                  ])),
+                        ),
+                        Container(
+                            width: double.infinity,
+                            margin: const EdgeInsets.symmetric(
+                                vertical: 10, horizontal: 20),
+                            child: ElevatedButton(
+                                child: Text("Save"),
+                                onPressed: () {
+                                  // Provider.of<AuthController>(context, listen: false)
+                                  //     .SignUp(_email, _password);
+                                })),
+                      ],
+                    ),
+                  );
+                });
           },
           child: Icon(Icons.rate_review_outlined)),
     );
