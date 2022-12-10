@@ -1,8 +1,17 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:weeky_vote/Controller/TeamRoomController.dart';
 
-class EnterRoomScreen extends StatelessWidget {
+class EnterRoomScreen extends StatefulWidget {
   static const String routeName = "/enterScreen";
-  const EnterRoomScreen({super.key});
+  EnterRoomScreen({super.key});
+
+  @override
+  State<EnterRoomScreen> createState() => _EnterRoomScreenState();
+}
+
+class _EnterRoomScreenState extends State<EnterRoomScreen> {
+  String enterRoomId = "";
 
   @override
   Widget build(BuildContext context) {
@@ -19,35 +28,31 @@ class EnterRoomScreen extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             //pin text
-            const TextField(
+            TextField(
+              onChanged: (value) {
+                enterRoomId = value.trim().toString();
+              },
               decoration: InputDecoration(
                 hintText: 'Enter Pin',
                 border: OutlineInputBorder(),
               ),
             ),
             const SizedBox(height: 20),
-            ElevatedButton(
-              style: ButtonStyle(
-                padding: MaterialStateProperty.all<EdgeInsets>(
-                    const EdgeInsets.fromLTRB(140, 10, 140, 10)),
-                backgroundColor: MaterialStateProperty.all<Color>(
-                  Colors.blueAccent,
+            Container(
+              height: 50,
+              width: double.infinity,
+              child: ElevatedButton(
+                style: ButtonStyle(
+                  backgroundColor: MaterialStateProperty.all<Color>(
+                    Colors.blueAccent,
+                  ),
                 ),
-                overlayColor: MaterialStateProperty.all<Color>(
-                  Colors.red,
-                ),
-                shadowColor: MaterialStateProperty.all<Color>(
-                  Colors.pink,
-                ),
-              ),
-              onPressed: () {
-                print("Confirm Pressed");
-              },
-              child: const Text(
-                "Confirm",
-                style: TextStyle(
-                  fontSize: 25,
-                ),
+                onPressed: () {
+                  print(enterRoomId);
+                  Provider.of<TeamRoomController>(context, listen: false).EnterRoom(enterRoomId);
+                },
+                child: Text(
+                  "Confirm"),
               ),
             ),
           ],

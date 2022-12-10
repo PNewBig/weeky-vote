@@ -1,6 +1,7 @@
 import 'dart:convert';
 import 'package:flutter/cupertino.dart';
 import 'package:http/http.dart' as http;
+import 'package:shared_preferences/shared_preferences.dart';
 
 class AuthController with ChangeNotifier{
    String _urlMain = "http://192.168.50.245:3000/api/";
@@ -15,9 +16,11 @@ class AuthController with ChangeNotifier{
         'lname':lname,
         'email': email,
         'password': password,
-        'position': 1
+        'position': position
        }));
-       if(respone.statusCode == 201){
+       final prefs = await SharedPreferences.getInstance();
+       prefs.setString('token', json.decode(respone.body)['token']);
+       if(respone.statusCode == 200){
         throw "ບໍ່ໄດ້ປ້ອນລະຫັດຜ່ານ";
        }
      }catch(error){
@@ -27,13 +30,15 @@ class AuthController with ChangeNotifier{
 
    void SignUp(String email, String password) async{
      try{
-      print("error: " + password);
+      final prefs = await SharedPreferences.getInstance();
       final urlSign = Uri.parse(_urlMain + "user/login");
       final response = await http.post(urlSign, headers: {"Content-Type": "application/json"},
       body: jsonEncode({
         'email':email,
         'password': password
       }));
+      prefs.setString('token', jsonDecode(response.body)['token']);
+      print(response.body);
       if(response.body != null){
          isAuth = true;
       }else{
