@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:weeky_vote/Presentation/widget/BuildTextField.dart';
 
 import '../widget/BuildForm.dart';
 
@@ -96,77 +97,10 @@ class _PreviewScreenState extends State<PreviewScreen> {
                   return SizedBox(
                     child: Column(
                       children: [
-                        Center(
-                          //1.comments
-                          child: Card(
-                              margin: const EdgeInsets.symmetric(
-                                  horizontal: 20, vertical: 10),
-                              elevation: 10,
-                              shape: RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.circular(20)),
-                              child: Column(
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: [
-                                    Container(
-                                        margin: const EdgeInsets.only(
-                                            left: 10, top: 10),
-                                        child: Text("1.Comments",
-                                            style: Theme.of(context)
-                                                .textTheme
-                                                .bodySmall)),
-                                    SizedBox(height: 10),
-                                    Container(
-                                      decoration: BoxDecoration(
-                                          color: Colors.grey,
-                                          borderRadius:
-                                              BorderRadius.circular(10)),
-                                      margin: const EdgeInsets.only(
-                                          left: 10, right: 10, bottom: 10),
-                                      child: TextFormField(
-                                        decoration: InputDecoration(
-                                            contentPadding:
-                                                const EdgeInsets.only(left: 10),
-                                            border: InputBorder.none),
-                                      ),
-                                    )
-                                  ])),
-                        ),
+                        BuildTextField(text: "1.Comments:"),
+
                         //2. Point
-                        Center(
-                          child: Card(
-                              margin: const EdgeInsets.symmetric(
-                                  horizontal: 20, vertical: 10),
-                              elevation: 10,
-                              shape: RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.circular(20)),
-                              child: Column(
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: [
-                                    Container(
-                                        margin: const EdgeInsets.only(
-                                            left: 10, top: 10),
-                                        child: Text("2.Point",
-                                            style: Theme.of(context)
-                                                .textTheme
-                                                .bodySmall)),
-                                    SizedBox(height: 10),
-                                    Container(
-                                      decoration: BoxDecoration(
-                                          color: Colors.grey,
-                                          borderRadius:
-                                              BorderRadius.circular(10)),
-                                      margin: const EdgeInsets.only(
-                                          left: 10, right: 10, bottom: 10),
-                                      child: TextFormField(
-                                        decoration: InputDecoration(
-                                            contentPadding:
-                                                const EdgeInsets.only(left: 10),
-                                            border: InputBorder.none),
-                                        keyboardType: TextInputType.number,
-                                      ),
-                                    )
-                                  ])),
-                        ),
+                        BuildTextField(text: "2.Points:"),
                         Container(
                             width: double.infinity,
                             margin: const EdgeInsets.symmetric(
