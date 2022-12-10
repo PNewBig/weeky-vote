@@ -97,6 +97,7 @@ class _PreviewScreenState extends State<PreviewScreen> {
                     child: Column(
                       children: [
                         Center(
+                          //1.comments
                           child: Card(
                               margin: const EdgeInsets.symmetric(
                                   horizontal: 20, vertical: 10),
@@ -130,6 +131,7 @@ class _PreviewScreenState extends State<PreviewScreen> {
                                     )
                                   ])),
                         ),
+                        //2. Point
                         Center(
                           child: Card(
                               margin: const EdgeInsets.symmetric(
@@ -160,6 +162,7 @@ class _PreviewScreenState extends State<PreviewScreen> {
                                             contentPadding:
                                                 const EdgeInsets.only(left: 10),
                                             border: InputBorder.none),
+                                        keyboardType: TextInputType.number,
                                       ),
                                     )
                                   ])),
