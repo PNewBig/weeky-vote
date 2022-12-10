@@ -1,5 +1,6 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.weeky_vote">
+    <uses-permission android:name="android.permission.INTERNET"></uses-permission>
    <application
         android:label="weeky_vote"
         android:name="${applicationName}"

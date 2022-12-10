@@ -21,8 +21,8 @@ class _HomeScreenState extends State<HomeScreen> {
     return Scaffold(
       body: selectedPage[_selectIndex]['page'] as Widget,
       bottomNavigationBar: BottomNavigationBar(
-          unselectedItemColor: Theme.of(context).primaryColor,
-          selectedItemColor: Colors.grey.withOpacity(0.9),
+          unselectedItemColor: Colors.grey.withOpacity(0.9),
+          selectedItemColor: Theme.of(context).primaryColor,
           currentIndex: _selectIndex,
           onTap: (value) {
             setState(() {

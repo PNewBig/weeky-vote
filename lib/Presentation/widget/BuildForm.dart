@@ -1,8 +1,11 @@
+
 import 'package:flutter/material.dart';
 
 class BuildForm extends StatelessWidget {
-  String text;
-  BuildForm({required this.text, super.key});
+  final String text;
+  final Function(String value) acceptValue;
+  final String? Function(String? value)? validation;
+  BuildForm({required this.text,required this.acceptValue,required this.validation, super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -24,7 +27,8 @@ class BuildForm extends StatelessWidget {
                   color: Colors.grey, borderRadius: BorderRadius.circular(10)),
               margin: const EdgeInsets.only(left: 10, right: 10, bottom: 10),
               child: TextFormField(
-                validator: (value) {},
+                validator: validation,
+                onChanged: acceptValue,
                 decoration: InputDecoration(
                     contentPadding: const EdgeInsets.only(left: 10),
                     border: InputBorder.none),
