@@ -4,26 +4,35 @@ import 'package:flutter/cupertino.dart';
 
 import 'package:http/http.dart' as http;
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:weeky_vote/core/constant.dart';
+
+import '../Model/TeamRoomModel.dart';
 
 class TeamRoomController with ChangeNotifier {
-  String _urlMain = "http://192.168.50.245:3000/api/";
-
-  void EnterRoom(String roomId) async {
+  TeamRoom teamData = new TeamRoom();
+  
+  TeamRoom get getTeamData{
+    return teamData;
+  }
+  void enterRoom(String roomId) async {
     final prefs = await SharedPreferences.getInstance();
-    final urlGetRoom = Uri.parse(_urlMain + "teams/jointeam");
+    final urlGetRoom = Uri.parse(ApiPath.joinRoom);
     final response = await http.post(urlGetRoom,
         headers: {
           'token': prefs.getString('token').toString(),
           "Content-Type": "application/json"
         },
         body: jsonEncode({'team_id': roomId}));
-
-    
   }
 
-  void FetchRoomData(String roomId) async{
-       final urlGetRoomData = Uri.parse(_urlMain + "teams/getDetailsTeam");
-       final response = await http.post(urlGetRoomData,body: json.encode({'team_id':roomId}));
-       print(response.body);
+  void fetchRoomData(String roomId) async{
+        final prefs = await SharedPreferences.getInstance();
+       final urlGetRoomData = Uri.parse(ApiPath.fectRoomData);
+       final response = await http.post(urlGetRoomData,headers: {
+          'token': prefs.getString('token').toString(),
+          "Content-Type": "application/json"
+        },body: json.encode({'team_id':roomId}));
+       teamData = teamRoomFromJson(response.body);
+       notifyListeners();
   }
 }

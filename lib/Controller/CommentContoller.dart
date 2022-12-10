@@ -3,14 +3,14 @@ import 'dart:convert';
 import 'package:flutter/cupertino.dart';
 import 'package:http/http.dart' as http;
 import '../Model/CommentModel.dart';
+import '../core/constant.dart';
 
 class CommentController with ChangeNotifier {
-  String _urlMain = "";
   List<CommentModel> listComment = [];
 
-  void FetchComment() async {
+  void fetchComment() async {
     try {
-      final urlFetch = Uri.parse(_urlMain);
+      final urlFetch = Uri.parse(ApiPath.getComment);
       final respone = await http.get(urlFetch);
       final extractComment = json.decode(respone.body);
     } catch (error) {
@@ -18,9 +18,9 @@ class CommentController with ChangeNotifier {
     }
   }
 
-  void AddComment() async {
+  void addComment() async {
     try {
-      final urlAdd = Uri.parse(_urlMain);
+      final urlAdd = Uri.parse(ApiPath.postCommnet);
       final response = await http.post(urlAdd, body: {});
     } catch (error) {
       print(error);

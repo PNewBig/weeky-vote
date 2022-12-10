@@ -42,10 +42,10 @@ class MyApp extends StatelessWidget {
                   return LogInScreen();
                 }
               },
-              HomeScreen.routeName :(context) => HomeScreen(),
-              RegisterScreen.routeName: (context) => RegisterScreen(),
-              PreviewScreen.routeName : (context) => PreviewScreen(name: "kileang"),
-              EnterRoomScreen.routeName : (context) => EnterRoomScreen()
+              HomeScreen.routeName : (context) => HomeScreen(),
+              RegisterScreen.routeName:(context) => RegisterScreen(),
+              PreviewScreen.routeName :(context) => PreviewScreen(name: "kileang"),
+              EnterRoomScreen.routeName :(context) => EnterRoomScreen()
             },
           );
         }

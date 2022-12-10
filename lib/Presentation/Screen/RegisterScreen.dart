@@ -136,8 +136,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                           value: element.psId.toString()))
                       .toList(),
                   onChanged: (value) {
-                    setState(() {
-                      
+                    setState((){
                       _positioned = value!.trim();
                     });
                   }),

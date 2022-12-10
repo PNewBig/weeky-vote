@@ -2,6 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:weeky_vote/Controller/TeamRoomController.dart';
 
+
+import 'HomeScreen.dart';
+
 class EnterRoomScreen extends StatefulWidget {
   static const String routeName = "/enterScreen";
   EnterRoomScreen({super.key});
@@ -48,8 +51,8 @@ class _EnterRoomScreenState extends State<EnterRoomScreen> {
                   ),
                 ),
                 onPressed: () {
-                  print(enterRoomId);
-                  Provider.of<TeamRoomController>(context, listen: false).EnterRoom(enterRoomId);
+                  Provider.of<TeamRoomController>(context, listen: false).enterRoom(enterRoomId);
+                  Navigator.of(context).pushNamed(HomeScreen.routeName, arguments: enterRoomId);
                 },
                 child: Text(
                   "Confirm"),

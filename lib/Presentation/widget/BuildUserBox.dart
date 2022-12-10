@@ -4,7 +4,9 @@ import 'package:flutter/material.dart';
 import 'package:weeky_vote/Presentation/Screen/PreviewScreen.dart';
 
 class BuildUserBox extends StatelessWidget {
-  const BuildUserBox({super.key});
+  String fname;
+  String lname;
+  BuildUserBox({required this.fname, required this.lname, super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -51,8 +53,8 @@ class BuildUserBox extends StatelessWidget {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                Text("Vilaphon", style: Theme.of(context).textTheme.bodyText1),
-                Text("Bounmachan", style: Theme.of(context).textTheme.bodyText1)
+                Text(fname, style: Theme.of(context).textTheme.bodyText1),
+                Text(lname, style: Theme.of(context).textTheme.bodyText1)
               ]))
           ])),
     );

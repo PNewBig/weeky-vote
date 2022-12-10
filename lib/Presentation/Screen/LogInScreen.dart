@@ -19,12 +19,6 @@ class _LogInScreenState extends State<LogInScreen> {
   String _email = "";
   String _password = "";
 
-  void OnSignIn() {
-    try {
-      if (_formKey.currentState!.validate()) return;
-    } catch (error) {}
-  }
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -60,12 +54,7 @@ class _LogInScreenState extends State<LogInScreen> {
                 child: ElevatedButton(
                     child: Text("Sig in"),
                     onPressed: () {
-                            print(_email);
-                            print(_password);
-                      Provider.of<AuthController>(context, listen: false)
-                
-
-                          .SignUp(_email, _password);
+                      Provider.of<AuthController>(context, listen: false).SignUp(_email, _password);
                     })),
             Container(
                 width: double.infinity,
