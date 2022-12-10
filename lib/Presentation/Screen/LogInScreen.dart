@@ -27,25 +27,22 @@ class _LogInScreenState extends State<LogInScreen> {
                 image: AssetImage("asset/Image/background.jpeg"),
                 fit: BoxFit.cover)),
         child: Form(
-
-          child: Column(mainAxisAlignment: MainAxisAlignment.center, children: [
-            BuildForm(text: "Email"),
-            BuildForm(text: "Password"),
-
           key: _formKey,
-          child:
-              Column(mainAxisAlignment: MainAxisAlignment.center, children: [
-            BuildForm(text: "Email", validation: (value) {
-             
-            }, acceptValue: (value){
-               _email = value.trim();
-            },),
-            BuildForm(text: "Password", validation: (value){
-              
-            }, acceptValue: (value){
-              _password = value.trim();
-            },),
-
+          child: Column(mainAxisAlignment: MainAxisAlignment.center, children: [
+            BuildForm(
+              text: "Email",
+              validation: (value) {},
+              acceptValue: (value) {
+                _email = value.trim();
+              },
+            ),
+            BuildForm(
+              text: "Password",
+              validation: (value) {},
+              acceptValue: (value) {
+                _password = value.trim();
+              },
+            ),
             SizedBox(
               height: 100,
             ),
@@ -56,14 +53,9 @@ class _LogInScreenState extends State<LogInScreen> {
                 child: ElevatedButton(
                     child: Text("Sig in"),
                     onPressed: () {
-                      Navigator.of(context).pushNamed(HomeScreen.routeName);
+                      Provider.of<AuthController>(context, listen: false)
+                          .SignUp(_email, _password);
                     })),
-
-                margin: const EdgeInsets.symmetric(vertical: 10, horizontal: 20),
-                child: ElevatedButton(child: Text("Sig in"), onPressed: (){
-                  Provider.of<AuthController>(context, listen: false).SignUp(_email, _password);
-                })),
-
             Container(
                 width: double.infinity,
                 margin:
