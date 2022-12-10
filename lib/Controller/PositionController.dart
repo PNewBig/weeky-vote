@@ -11,13 +11,8 @@ class PositionController with ChangeNotifier{
        try{
         final _urlGet = Uri.parse(_mainUrl + "position/getposition");
         final response = await http.get(_urlGet);
-        print(response.body);
-        print(response.statusCode);
-         final responseData = jsonDecode(response.body);
-         responseData.forEach((key,element) { 
-          listPosition.add(PositionModel(psId: element['PS_ID'], psName: element['PS_name'],psDesc: element['PS_desc']));
-         });
-         print(listPosition);
+        
+        listPosition = positionModelFromJson(response.body);
         notifyListeners();
        }catch(error){
         // throw error;

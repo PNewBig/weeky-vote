@@ -97,7 +97,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
   Widget BuildDropDown(String text, BuildContext ctx) {
     return Consumer<PositionController>(
       builder: (context, positionData, child) {
-        print(positionData.listPosition);
+        print("Data from : " + positionData.listPosition[0].toString());
         return Card(
           margin: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
           elevation: 10,
