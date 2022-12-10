@@ -21,7 +21,7 @@ class EnterRoomScreen extends StatelessWidget {
             //pin text
             const TextField(
               decoration: InputDecoration(
-                hintText: 'Pin',
+                hintText: 'Enter Pin',
                 border: OutlineInputBorder(),
               ),
             ),
