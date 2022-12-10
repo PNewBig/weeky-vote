@@ -96,12 +96,74 @@ class _PreviewScreenState extends State<PreviewScreen> {
                   return SizedBox(
                     child: Column(
                       children: [
-                        // Center(
-                        //   child: BuildForm(
-                        //       text: "1.Comment",
-                        //       acceptValue: (value) {},
-                        //       validation: (value) {}),
-                        // ),
+                        Center(
+                          child: Card(
+                              margin: const EdgeInsets.symmetric(
+                                  horizontal: 20, vertical: 10),
+                              elevation: 10,
+                              shape: RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(20)),
+                              child: Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    Container(
+                                        margin: const EdgeInsets.only(
+                                            left: 10, top: 10),
+                                        child: Text("1.Comments",
+                                            style: Theme.of(context)
+                                                .textTheme
+                                                .bodySmall)),
+                                    SizedBox(height: 10),
+                                    Container(
+                                      decoration: BoxDecoration(
+                                          color: Colors.grey,
+                                          borderRadius:
+                                              BorderRadius.circular(10)),
+                                      margin: const EdgeInsets.only(
+                                          left: 10, right: 10, bottom: 10),
+                                      child: TextFormField(
+                                        decoration: InputDecoration(
+                                            contentPadding:
+                                                const EdgeInsets.only(left: 10),
+                                            border: InputBorder.none),
+                                      ),
+                                    )
+                                  ])),
+                        ),
+                        Center(
+                          child: Card(
+                              margin: const EdgeInsets.symmetric(
+                                  horizontal: 20, vertical: 10),
+                              elevation: 10,
+                              shape: RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(20)),
+                              child: Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    Container(
+                                        margin: const EdgeInsets.only(
+                                            left: 10, top: 10),
+                                        child: Text("2.Point",
+                                            style: Theme.of(context)
+                                                .textTheme
+                                                .bodySmall)),
+                                    SizedBox(height: 10),
+                                    Container(
+                                      decoration: BoxDecoration(
+                                          color: Colors.grey,
+                                          borderRadius:
+                                              BorderRadius.circular(10)),
+                                      margin: const EdgeInsets.only(
+                                          left: 10, right: 10, bottom: 10),
+                                      child: TextFormField(
+                                        decoration: InputDecoration(
+                                            contentPadding:
+                                                const EdgeInsets.only(left: 10),
+                                            border: InputBorder.none),
+                                      ),
+                                    )
+                                  ])),
+                        ),
                         Container(
                             width: double.infinity,
                             margin: const EdgeInsets.symmetric(
