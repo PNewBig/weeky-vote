@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:weeky_vote/Presentation/widget/BuildForm.dart';
 
 class PreviewScreen extends StatefulWidget {
   static const String routeName = "/PreviewScreen";
@@ -10,14 +9,14 @@ class PreviewScreen extends StatefulWidget {
   State<PreviewScreen> createState() => _PreviewScreenState();
 }
 
-void CommentBottomSheet(BuildContext ctx) {
-  showModalBottomSheet(
-      context: ctx,
-      builder: (context) {
-        return Container(height: 500, child: Text("BottomSheet"));
-      });
+void CommentBottomSheet(BuildContext ctx){
+  showModalBottomSheet(context: ctx, builder: (context){
+    return Container(
+      decoration: BoxDecoration(borderRadius: BorderRadius.only(topLeft: Radius.circular(50), topRight: Radius.circular(50))),
+      height: 300,
+      child: Text("BottomSheet"));
+  });
 }
-
 class _PreviewScreenState extends State<PreviewScreen> {
   @override
   Widget build(BuildContext context) {
@@ -25,7 +24,7 @@ class _PreviewScreenState extends State<PreviewScreen> {
       body: Container(
           child: Column(
         children: [
-          Container(
+                    Container(
               width: double.infinity,
               height: 200,
               decoration: BoxDecoration(
@@ -33,58 +32,51 @@ class _PreviewScreenState extends State<PreviewScreen> {
                   borderRadius: BorderRadius.only(
                       bottomLeft: Radius.circular(20),
                       bottomRight: Radius.circular(20))),
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Container(
-                      height: 100,
-                      width: 100,
-                      child: Card(
-                          shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(20)),
-                          child: Image(
-                              image: AssetImage("asset/Image/comment.png")))),
-                  SizedBox(height: 10),
-                  Container(
-                      height: 50,
-                      width: 150,
-                      child: Card(
-                        child: Center(
-                            child: Text(widget.name,
-                                style: Theme.of(context).textTheme.bodyText1)),
-                      ))
-                ],
-              )),
+                        child:Column(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                          Container(
+                            height: 100,
+                            width: 100,
+                            child: Card(
+                              shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
+                              child: Image(image: AssetImage("asset/Image/comment.png")))),
+                          SizedBox(height: 10),
+                          Container(
+                            height: 50,
+                            width: 150,
+                            child: Card(child: Center(child: Text(widget.name, style: Theme.of(context).textTheme.bodyText1)),))
+                        ],)
+                      ),
+                      SizedBox(height: 50,),
+                      Container(
+                        width: double.infinity,
+                        height: 100,
+                        margin: const EdgeInsets.symmetric(horizontal:20 ),
+                         decoration: BoxDecoration(
+                          color: Colors.grey.withOpacity(0.5),
+                          borderRadius: BorderRadius.circular(20)),
+                        child: Row(
+                          crossAxisAlignment: CrossAxisAlignment.center,
+                          children: [
+                          Container(
+                            margin: const EdgeInsets.symmetric(vertical: 10),  
+                            child: Column(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                                Text("Total Point"),
+                                SizedBox(height: 10),
+                                Container(child: Center(child: Text("10")))
+                          ],))
+                        ])),
+                      
         ],
       )),
       floatingActionButton: FloatingActionButton(
-          onPressed: () {
-            // CommentBottomSheet();
-            showModalBottomSheet(
-                context: context,
-                builder: (BuildContext context) {
-                  return SizedBox(
-                    child: Column(
-                      children: [
-                        Center(child: BuildForm(text: "1.Comments")),
-                        Center(child: BuildForm(text: "2.Points")),
-                        Center(
-                          child: Container(
-                              width: double.infinity,
-                              margin: const EdgeInsets.symmetric(
-                                  vertical: 10, horizontal: 20),
-                              child: ElevatedButton(
-                                  child: Text("Save"),
-                                  onPressed: () {
-                                    // Navigator.of(context).pushNamed(HomeScreen.routeName);
-                                  })),
-                        )
-                      ],
-                    ),
-                  );
-                });
-          },
-          child: Icon(Icons.rate_review_outlined)),
+        backgroundColor: Colors.amber,
+        onPressed: (){
+        CommentBottomSheet(context);
+      }, child: Icon(Icons.rate_review_outlined)),
     );
   }
 }
