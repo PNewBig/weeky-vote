@@ -37,7 +37,6 @@ class RegisterScreen extends StatelessWidget {
             ))));
   }
 
-
   Widget BuildDropDown(String text, BuildContext ctx) {
     return Card(
       margin: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),

@@ -67,35 +67,17 @@ class _PreviewScreenState extends State<PreviewScreen> {
                     child: Column(
                       children: [
                         Center(child: BuildForm(text: "1.Comments")),
+                        Center(child: BuildForm(text: "2.Points")),
                         Center(
-                            child: Card(
-                          margin: const EdgeInsets.symmetric(
-                              horizontal: 20, vertical: 10),
-                          elevation: 10,
-                          shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(20)),
-                          child: Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                Container(
-                                    margin: const EdgeInsets.only(
-                                        left: 10, top: 10),
-                                    child: Text("2.Point",
-                                        style: Theme.of(context)
-                                            .textTheme
-                                            .bodySmall)),
-                                SizedBox(height: 10),
-                                Container()
-                              ]),
-                        )),
-                        Center(
-                          child: Card(
-                            child: Container(
-                              child: Text("Save",
-                                  style:
-                                      Theme.of(context).textTheme.bodyMedium),
-                            ),
-                          ),
+                          child: Container(
+                              width: double.infinity,
+                              margin: const EdgeInsets.symmetric(
+                                  vertical: 10, horizontal: 20),
+                              child: ElevatedButton(
+                                  child: Text("Save"),
+                                  onPressed: () {
+                                    // Navigator.of(context).pushNamed(HomeScreen.routeName);
+                                  })),
                         )
                       ],
                     ),
