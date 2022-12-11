@@ -48,7 +48,7 @@ class _ProfilePageState extends State<ProfilePage> {
                         child: Card(
                             shape: RoundedRectangleBorder(
                                 borderRadius: BorderRadius.circular(20)),
-                            child: Image(
+                            child:const Image(
                                 image: AssetImage("asset/Image/comment.png")))),
                     SizedBox(height: 10),
                     Container(

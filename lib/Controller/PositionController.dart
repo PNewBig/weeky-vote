@@ -5,7 +5,7 @@ import 'package:http/http.dart';
 import 'package:weeky_vote/Model/PositionModel.dart';
 import 'package:http/http.dart' as http;
 import 'package:weeky_vote/core/ApiService.dart';
-import 'package:weeky_vote/core/constant.dart';
+import 'package:weeky_vote/core/ApiPath.dart';
 
 class PositionController with ChangeNotifier {
   PositionModel? positionData;

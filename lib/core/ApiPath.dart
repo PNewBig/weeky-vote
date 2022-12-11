@@ -1,4 +1,4 @@
-
+//it is class where we manage endpoint 
 class ApiPath{
    static const String baseUrl = "http://192.168.50.245:3000/api";
    static const String register = "$baseUrl/user/register";

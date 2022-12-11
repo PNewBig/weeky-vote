@@ -7,7 +7,7 @@ import 'package:http/http.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:weeky_vote/Model/PersonalPoint.dart';
 import 'package:weeky_vote/core/ApiService.dart';
-import 'package:weeky_vote/core/constant.dart';
+import 'package:weeky_vote/core/ApiPath.dart';
 
 import '../Model/TeamRoomModel.dart';
 

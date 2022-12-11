@@ -29,12 +29,11 @@ class _HomePageState extends State<HomePage> {
   Widget build(BuildContext context) {
     return Consumer<TeamRoomController>(builder: (context, teamData, child) {
       if (teamData.toString().isEmpty) {
-        return Center(child: CircularProgressIndicator());
+        return const Center(child: CircularProgressIndicator());
       } else if (teamData.getTeamData.list != null) {
-        return Container(
-            child: GridView.builder(
+        return GridView.builder(
           gridDelegate:
-              SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 2),
+             const SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 2),
           itemCount: teamData.getTeamData.list!.length,
           itemBuilder: ((context, index) {
             return BuildUserBox(
@@ -45,7 +44,7 @@ class _HomePageState extends State<HomePage> {
               
             );
           }),
-        ));
+        );
       }else{
         return Center(child:CircularProgressIndicator());
       }

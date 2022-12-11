@@ -14,6 +14,7 @@ class PreviewScreen extends StatefulWidget {
 }
 
 class _PreviewScreenState extends State<PreviewScreen> {
+  final _formKey = new GlobalKey<FormState>();
   String? _msg;
   int? _point;
   String? _userId;
@@ -100,41 +101,60 @@ class _PreviewScreenState extends State<PreviewScreen> {
     );
   }
 
- void postComment(){
-  Provider.of<CommentController>(context, listen: false).addComment(_msg!, _point!, _userId!, _teamId!);
- }
+  void postComment() {
+    if (_formKey.currentState!.validate()) return;
+    Provider.of<CommentController>(context, listen: false)
+        .addComment(_msg!, _point!, _userId!, _teamId!);
+    Navigator.of(context).pop();
+  }
+
   void showCommentBottomSheet() {
     showModalBottomSheet(
         context: context,
         builder: (BuildContext) {
           return SizedBox(
-            child: Column(
-              children: [
-                Center(
-                  //1.comments
-                  child: BuildForm(text: "Comment", acceptValue: (value){
-                       _msg = value.trim();
-                  }, validation: (value){})
-                ),
-                //2. Point
-                Center(
-                  child: BuildForm(text: "Point", acceptValue: (value){
-                         _point = int.parse(value.trim());
-                  }, validation: (value) {
-                    
-                  },),
-                ),
-                Container(
-                    width: double.infinity,
-                    height: 100,
-                    margin: const EdgeInsets.symmetric(
-                        vertical: 10, horizontal: 20),
-                    child: ElevatedButton(
-                        child: Text("Save"),
-                        onPressed: () {
-                         postComment();
-                        })),
-              ],
+            child: Form(
+              key: _formKey,
+              child: Column(
+                children: [
+                  Center(
+                      //1.comments
+                      child: BuildForm(
+                          text: "Comment",
+                          acceptValue: (value) {
+                            _msg = value.trim();
+                          },
+                          validation: (value) {
+                            if (value!.isEmpty) {
+                              return "value is invalid";
+                            }
+                          })),
+                  //2. Point
+                  Center(
+                    child: BuildForm(
+                      text: "Point",
+                      acceptValue: (value) {
+                        _point = int.parse(value.trim());
+                      },
+                      validation: (value) {
+                        if (value!.isEmpty) {
+                          return "value is invalid or empty";
+                        }
+                      },
+                    ),
+                  ),
+                  Container(
+                      width: double.infinity,
+                      height: 100,
+                      margin: const EdgeInsets.symmetric(
+                          vertical: 10, horizontal: 20),
+                      child: ElevatedButton(
+                          child: Text("Save"),
+                          onPressed: () {
+                            postComment();
+                          })),
+                ],
+              ),
             ),
           );
         });

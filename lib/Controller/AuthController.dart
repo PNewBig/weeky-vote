@@ -4,8 +4,10 @@ import 'package:http/http.dart' as http;
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:weeky_vote/core/ApiService.dart';
 
-import '../core/constant.dart';
+import '../core/ApiPath.dart';
 
+
+//class use for mannage Authetication Data model and handler error
 class AuthController with ChangeNotifier{
    bool isAuth = false;
    

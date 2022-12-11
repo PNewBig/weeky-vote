@@ -21,7 +21,7 @@ class _EnterRoomScreenState extends State<EnterRoomScreen> {
     return Scaffold(
       body: Container(
         alignment: Alignment.center,
-        padding: EdgeInsets.all(24.0),
+        padding: const EdgeInsets.all(24.0),
         decoration: const BoxDecoration(
           image: DecorationImage(
               image: AssetImage("asset/Image/background.jpeg"),
@@ -35,13 +35,13 @@ class _EnterRoomScreenState extends State<EnterRoomScreen> {
               onChanged: (value) {
                 enterRoomId = value.trim().toString();
               },
-              decoration: InputDecoration(
+              decoration:const InputDecoration(
                 hintText: 'Enter Pin',
                 border: OutlineInputBorder(),
               ),
             ),
             const SizedBox(height: 20),
-            Container(
+          Container(
               height: 50,
               width: double.infinity,
               child: ElevatedButton(
@@ -54,7 +54,7 @@ class _EnterRoomScreenState extends State<EnterRoomScreen> {
                   Provider.of<TeamRoomController>(context, listen: false).enterRoom(enterRoomId);
                   Navigator.of(context).pushNamed(HomeScreen.routeName, arguments: enterRoomId);
                 },
-                child: Text(
+                child:const Text(
                   "Confirm"),
               ),
             ),
