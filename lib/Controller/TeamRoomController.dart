@@ -37,7 +37,7 @@ class TeamRoomController with ChangeNotifier {
     notifyListeners();
   }
 
-  void fetchPersonalPoint() async {
+  Future<void> fetchPersonalPoint() async {
     try {
       final prefs = await SharedPreferences.getInstance();
       print(prefs.getString('token').toString());

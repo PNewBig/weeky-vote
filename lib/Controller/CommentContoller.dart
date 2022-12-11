@@ -28,11 +28,12 @@ class CommentController with ChangeNotifier {
 
   Future<void> addComment(String msg,int point,String userId, String teamId) async {
     try {
-    final response = ApiService.postData(ApiPath.postCommnet, {
+    final response = await ApiService.postData(ApiPath.postCommnet, {
            'team_id':teamId,
            'user_id':userId,
            'point': point,
            'Comment':msg});
+      print(response.statusCode);
     } catch (error) {
       print(error);
     }

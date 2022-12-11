@@ -74,23 +74,30 @@ class _PreviewScreenState extends State<PreviewScreen> {
           ),
           Container(
             height: 500,
-            child: Consumer<CommentController>(
-                builder: (context, commentData, child) {
-              if (commentData.getComment != null) {
-                return ListView.builder(
-                    itemCount: commentData.getComment!.result!.length,
-                    itemBuilder: (context, index) {
-                      return BuildBoxComment(
-                          comment: commentData
-                              .getComment!.result![index].comment
-                              .toString(),
-                          voteAt: commentData.getComment!.result![index].voteAt
-                              .toString());
-                    });
-              } else {
-                return Container(child: Text(""));
-              }
-            }),
+            child: RefreshIndicator(
+              onRefresh: () async {
+                Provider.of<CommentController>(context, listen: false)
+                    .fetchComment(_userId!, _teamId!);
+              },
+              child: Consumer<CommentController>(
+                  builder: (context, commentData, child) {
+                if (commentData.getComment != null) {
+                  return ListView.builder(
+                      itemCount: commentData.getComment!.result!.length,
+                      itemBuilder: (context, index) {
+                        return BuildBoxComment(
+                            comment: commentData
+                                .getComment!.result![index].comment
+                                .toString(),
+                            voteAt: commentData
+                                .getComment!.result![index].voteAt
+                                .toString());
+                      });
+                } else {
+                  return Container(child: Text(""));
+                }
+              }),
+            ),
           )
         ],
       )),
@@ -101,12 +108,7 @@ class _PreviewScreenState extends State<PreviewScreen> {
     );
   }
 
-  void postComment() {
-    if (_formKey.currentState!.validate()) return;
-    Provider.of<CommentController>(context, listen: false)
-        .addComment(_msg!, _point!, _userId!, _teamId!);
-    Navigator.of(context).pop();
-  }
+  void postComment() {}
 
   void showCommentBottomSheet() {
     showModalBottomSheet(
@@ -151,7 +153,10 @@ class _PreviewScreenState extends State<PreviewScreen> {
                       child: ElevatedButton(
                           child: Text("Save"),
                           onPressed: () {
-                            postComment();
+                            Provider.of<CommentController>(context,
+                                    listen: false)
+                                .addComment(_msg!, _point!, _userId!, _teamId!);
+                            Navigator.of(context).pop;
                           })),
                 ],
               ),
