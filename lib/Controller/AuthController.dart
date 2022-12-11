@@ -10,6 +10,7 @@ class AuthController with ChangeNotifier{
    
    void Register(String fname, String lname,String email, String password, String position) async{
      try{
+      print(password);
        final urlRegis = Uri.parse(ApiPath.register);
        final respone = await http.post(urlRegis , headers: {"Content-Type": "application/json"},
        body: jsonEncode({
@@ -25,7 +26,7 @@ class AuthController with ChangeNotifier{
         throw "ບໍ່ໄດ້ປ້ອນລະຫັດຜ່ານ";
        }
      }catch(error){
-       throw error;
+  
      }
    }
 

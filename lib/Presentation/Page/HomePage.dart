@@ -6,7 +6,8 @@ import 'package:weeky_vote/Controller/TeamRoomController.dart';
 import '../Widget/BuildUserBox.dart';
 
 class HomePage extends StatefulWidget {
-  const HomePage({super.key});
+  String teamId;
+  HomePage({required this.teamId,super.key});
 
   @override
   State<HomePage> createState() => _HomePageState();
@@ -29,7 +30,7 @@ class _HomePageState extends State<HomePage> {
     return Consumer<TeamRoomController>(builder: (context, teamData, child) {
       if (teamData.toString().isEmpty) {
         return Center(child: CircularProgressIndicator());
-      } else if (teamData.toString().isNotEmpty) {
+      } else if (teamData.getTeamData.list != null) {
         return Container(
             child: GridView.builder(
           gridDelegate:
@@ -39,6 +40,9 @@ class _HomePageState extends State<HomePage> {
             return BuildUserBox(
               fname: teamData.getTeamData.list![index].fname.toString(),
               lname: teamData.getTeamData.list![index].lname.toString(),
+              userId: teamData.getTeamData.list![index].userId.toString(),
+              teamId: widget.teamId
+              
             );
           }),
         ));

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:weeky_vote/Controller/AuthController.dart';
+import 'package:weeky_vote/Controller/CommentContoller.dart';
 import 'package:weeky_vote/Controller/PositionController.dart';
 import 'package:weeky_vote/Controller/TeamRoomController.dart';
 import 'package:weeky_vote/Presentation/Screen/EnterRoomScreen.dart';
@@ -22,7 +23,8 @@ class MyApp extends StatelessWidget {
       providers: [
         ChangeNotifierProvider(create: (context) => AuthController()),
         ChangeNotifierProvider.value(value: PositionController()),
-        ChangeNotifierProvider.value(value: TeamRoomController())
+        ChangeNotifierProvider.value(value: TeamRoomController()),
+        ChangeNotifierProvider.value(value: CommentController())
       ],
       child: Consumer<AuthController>(
         builder: (context, authData, child) {

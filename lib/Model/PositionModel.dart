@@ -1,22 +1,45 @@
+// To parse this JSON data, do
+//
+//     final positionModel = positionModelFromJson(jsonString);
+
 import 'dart:convert';
 
-List<PositionModel> positionModelFromJson(String str) => List<PositionModel>.from(json.decode(str).map((x) => PositionModel.fromJson(x)));
+PositionModel positionModelFromJson(String str) => PositionModel.fromJson(json.decode(str));
 
-String positionModelToJson(List<PositionModel> data) => json.encode(List<dynamic>.from(data.map((x) => x.toJson())));
+String positionModelToJson(PositionModel data) => json.encode(data.toJson());
 
 class PositionModel {
-      int? psId;
-    String? psName;
-    dynamic psDesc;
     PositionModel({
+        this.type,
+        this.result,
+    });
+
+    String? type;
+    List<Result>? result;
+
+    factory PositionModel.fromJson(Map<String, dynamic> json) => PositionModel(
+        type: json["type"] == null ? null : json["type"],
+        result: json["result"] == null ? null : List<Result>.from(json["result"].map((x) => Result.fromJson(x))),
+    );
+
+    Map<String, dynamic> toJson() => {
+        "type": type == null ? null : type,
+        "result": result == null ? null : List<dynamic>.from(result!.map((x) => x.toJson())),
+    };
+}
+
+class Result {
+    Result({
         this.psId,
         this.psName,
         this.psDesc,
     });
 
+    int? psId;
+    String? psName;
+    dynamic psDesc;
 
-
-    factory PositionModel.fromJson(Map<String, dynamic> json) => PositionModel(
+    factory Result.fromJson(Map<String, dynamic> json) => Result(
         psId: json["PS_ID"] == null ? null : json["PS_ID"],
         psName: json["PS_name"] == null ? null : json["PS_name"],
         psDesc: json["PS_desc"],

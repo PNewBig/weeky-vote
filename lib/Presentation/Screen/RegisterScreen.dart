@@ -39,6 +39,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
 
   @override
   Widget build(BuildContext context) {
+    print("it work");
     return Scaffold(
         body: Container(
             decoration: BoxDecoration(
@@ -130,11 +131,8 @@ class _RegisterScreenState extends State<RegisterScreen> {
                   
                   value: _positioned.isNotEmpty ? _positioned : null,
                   underline: SizedBox(),
-                  items: positionData.getListPosition
-                      .map((element) => DropdownMenuItem<String>(
-                          child: Text(element.psName.toString()),
-                          value: element.psId.toString()))
-                      .toList(),
+                  items: positionData.getListPosition!.result!.map((e) => DropdownMenuItem<String>(child: Text(e.psName.toString()),value: e.psId.toString(),)).toList(),
+
                   onChanged: (value) {
                     setState((){
                       _positioned = value!.trim();

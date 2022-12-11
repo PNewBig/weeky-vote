@@ -14,17 +14,15 @@ class HomeScreen extends StatefulWidget {
 
 class _HomeScreenState extends State<HomeScreen> {
   int _selectIndex = 0;
+  
+   
 
-  List<Map<String, Object>> selectedPage = [
-    {'page': HomePage()},
-    {'page': ProfilePage(name: "vanlakhna")}
-  ];
 
   @override
   Widget build(BuildContext context) {
-
+ String teamId = ModalRoute.of(context)!.settings.arguments as String;
     return Scaffold(
-      body: selectedPage[_selectIndex]['page'] as Widget,
+      body: _selectIndex == 0 ? HomePage(teamId: teamId) : ProfilePage(name: 'Vanlakhan',),
       bottomNavigationBar: BottomNavigationBar(
           unselectedItemColor: Colors.grey.withOpacity(0.9),
           selectedItemColor: Theme.of(context).primaryColor,
