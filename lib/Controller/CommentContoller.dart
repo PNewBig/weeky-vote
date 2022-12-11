@@ -3,6 +3,7 @@ import 'dart:convert';
 import 'package:flutter/cupertino.dart';
 import 'package:http/http.dart' as http;
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:weeky_vote/core/ApiService.dart';
 import '../Model/CommentModel.dart';
 import '../core/constant.dart';
 
@@ -13,16 +14,10 @@ class CommentController with ChangeNotifier {
   }
   void fetchComment(String userId, String teamId) async {
     try {
-
-      final prefs = await SharedPreferences.getInstance();
-      final urlFetch = Uri.parse(ApiPath.getComment);
-      final respone = await http.post(urlFetch,headers: {
-          'token': prefs.getString('token').toString(),
-          "Content-Type": "application/json"},
-          body: jsonEncode({
+     final response = await ApiService.postData(ApiPath.getComment, {
         'team_id': teamId,
-        'user_id': userId}));
-      _comment = commentModelFromJson(respone.body);
+        'user_id': userId});
+      _comment = commentModelFromJson(response.body);
       notifyListeners();
     } catch (error) {
       
@@ -31,17 +26,11 @@ class CommentController with ChangeNotifier {
 
   void addComment(String msg,int point,String userId, String teamId) async {
     try {
-      print(msg);
-      final prefs = await SharedPreferences.getInstance();
-      final urlAdd = Uri.parse(ApiPath.postCommnet);
-      final response = await http.post(urlAdd, headers: {
-          'token': prefs.getString('token').toString(),
-          "Content-Type": "application/json"},body: json.encode({
+    final response = ApiService.postData(ApiPath.postCommnet, {
            'team_id':teamId,
            'user_id':userId,
            'point': point,
-           'Comment':msg}));
-      print(response.statusCode);
+           'Comment':msg});
     } catch (error) {
       print(error);
     }

@@ -25,7 +25,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
   @override
   void initState() {
     // TODO: implement initState
-    Provider.of<PositionController>(context, listen: false).FetchPosition();
+    Provider.of<PositionController>(context, listen: false).fetchPosition();
     super.initState();
   }
 
