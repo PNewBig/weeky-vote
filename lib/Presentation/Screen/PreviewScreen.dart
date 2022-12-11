@@ -18,6 +18,7 @@ class _PreviewScreenState extends State<PreviewScreen> {
   int? _point;
   String? _userId;
   String? _teamId;
+  String? _fname;
   @override
   void didChangeDependencies() {
     // TODO: implement didChangeDependencies
@@ -26,13 +27,13 @@ class _PreviewScreenState extends State<PreviewScreen> {
         ModalRoute.of(context)!.settings.arguments as Map<String, dynamic>;
     _userId = argument['userId'] as String;
     _teamId = argument['teamId'] as String;
+    _fname = argument['fname'];
     Provider.of<CommentController>(context, listen: false)
         .fetchComment(_userId!, _teamId!);
   }
 
   @override
   Widget build(BuildContext context) {
-    print("hed work bor");
     return Scaffold(
       body: Container(
           child: Column(
@@ -62,7 +63,7 @@ class _PreviewScreenState extends State<PreviewScreen> {
                       width: 150,
                       child: Card(
                         child: Center(
-                            child: Text(widget.name,
+                            child: Text(_fname!,
                                 style: Theme.of(context).textTheme.bodyText1)),
                       ))
                 ],

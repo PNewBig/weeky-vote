@@ -11,141 +11,95 @@ class ProfilePage extends StatefulWidget {
   @override
   State<ProfilePage> createState() => _ProfilePageState();
 }
+
 class _ProfilePageState extends State<ProfilePage> {
   @override
   void didChangeDependencies() {
     // TODO: implement didChangeDependencies
     super.didChangeDependencies();
-    Provider.of<TeamRoomController>(context, listen: false).fetchPersonalPoint();
+    Provider.of<TeamRoomController>(
+      context,
+    ).fetchPersonalPoint();
   }
+
   @override
   Widget build(BuildContext context) {
-    return Container(
-      child: Column(
-        children: [
-          Container(
-              width: double.infinity,
-              height: 200,
-              decoration: BoxDecoration(
-                  color: Colors.amberAccent,
-                  borderRadius: BorderRadius.only(
-                      bottomLeft: Radius.circular(20),
-                      bottomRight: Radius.circular(20))),
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Container(
-                      height: 100,
-                      width: 100,
-                      child: Card(
-                          shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(20)),
-                          child: Image(
-                              image: AssetImage("asset/Image/comment.png")))),
-                  SizedBox(height: 10),
-                  Container(
-                      height: 50,
-                      width: 150,
-                      child: Card(
-                        child: Center(
-                            child: Text(widget.name,
-                                style: Theme.of(context).textTheme.bodyText1)),
-                      ))
-                ],
-              )),
-          Consumer<TeamRoomController>(
-            child: Container(child: Text("ບໍ່ມີຂໍ້ມູນ")),
-            builder: (context, personalPoint, child) {
-              double percent = personalPoint.getTotalPoint?.percent?.toDouble()?? 0;
-              if(personalPoint.getTotalPoint?.percent != null){
-                return Container(
-                width: 300,
-                height: 330,
-                margin: const EdgeInsets.only(top: 50),
+    return Consumer<TeamRoomController>(
+        builder: (context, personalPoint, child) {
+      double percent = personalPoint.getTotalPoint?.percent?.toDouble() ?? 0;
+      String email = personalPoint.getTotalPoint?.email?.toString() ?? "";
+      return Container(
+        child: Column(
+          children: [
+            Container(
+                width: double.infinity,
+                height: 200,
+                decoration: BoxDecoration(
+                    color: Colors.amberAccent,
+                    borderRadius: BorderRadius.only(
+                        bottomLeft: Radius.circular(20),
+                        bottomRight: Radius.circular(20))),
                 child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    Padding(
-                      padding: const EdgeInsets.all(8.0),
-                      child: Text("Your Point:",
-                          style: Theme.of(context).textTheme.bodyText1),
-                    ),
-                    CircularPercentIndicator(
-                      animation: true,
-                      radius: 100,
-                      lineWidth: 20,
-                      percent: percent / 100,
-                      progressColor: Colors.deepPurple,
-                      backgroundColor: Colors.deepPurple.shade100,
-                      circularStrokeCap: CircularStrokeCap.round,
-                      center: Text(
-                        '${personalPoint.getTotalPoint?.percent} %',
-                        style: Theme.of(context).textTheme.bodyText1,
-                      ),
-                    ),
-                    SizedBox(height: 20),
                     Container(
-                        margin: EdgeInsets.only(
-                            left: 30.0, top: 1.0, right: 30.0, bottom: 20.0),
-                        height: 30,
-                        // color: Color.fromARGB(255, 16, 47, 34),
+                        height: 100,
+                        width: 100,
                         child: Card(
-                          child: Align(
-                              alignment: Alignment.centerLeft,
-                              child: Text("date:",
-                                  style: Theme.of(context).textTheme.bodyText1)),
+                            shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(20)),
+                            child: Image(
+                                image: AssetImage("asset/Image/comment.png")))),
+                    SizedBox(height: 10),
+                    Container(
+                        height: 50,
+                        width: 250,
+                        child: Card(
+                          child: Center(
+                              child: Text(email,
+                                  style:
+                                      Theme.of(context).textTheme.bodyText1)),
                         ))
                   ],
-                ),
-                decoration:const BoxDecoration(
-                  color: Color.fromARGB(255, 231, 241, 243),
-                  borderRadius: BorderRadius.only(
-                      bottomLeft: Radius.circular(20),
-                      bottomRight: Radius.circular(20),
-                      topLeft: Radius.circular(30),
-                      topRight: Radius.circular(30)),
-                ),
-              );
-              }else{
-              return Container(
-                width: 300,
-                height: 330,
-                margin: const EdgeInsets.only(top: 50),
-                child: Column(
-                  children: [
+                )),
+            Container(
+              width: 300,
+              height: 330,
+              margin: const EdgeInsets.only(top: 50),
+              child: Column(
+                children: [
                   Padding(
-                      padding: const EdgeInsets.all(8.0),
-                      child: Text("Your Point:",),
+                    padding: const EdgeInsets.all(8.0),
+                    child: Text("Your Point:",
+                        style: Theme.of(context).textTheme.bodyText1),
+                  ),
+                  CircularPercentIndicator(
+                    animation: true,
+                    radius: 100,
+                    lineWidth: 20,
+                    percent: percent / 100,
+                    progressColor: Colors.deepPurple,
+                    backgroundColor: Colors.deepPurple.shade100,
+                    circularStrokeCap: CircularStrokeCap.round,
+                    center: Text(
+                      '${personalPoint.getTotalPoint?.percent} %',
+                      style: Theme.of(context).textTheme.bodyText1,
                     ),
-                    CircularPercentIndicator(
-                      animation: true,
-                      radius: 100,
-                      lineWidth: 20,
-                      percent: double.parse(personalPoint.getTotalPoint?.percent.toString()?? "0"),
-                      progressColor: Colors.deepPurple,
-                      backgroundColor: Colors.deepPurple.shade100,
-                      circularStrokeCap: CircularStrokeCap.round,
-                      center: Text(
-                        '${personalPoint.getTotalPoint?.percent ?? 0} %',
-                        style: Theme.of(context).textTheme.bodyText1,
-                      ),
-                    ),
-                  const SizedBox(height: 20),
-                  ],
-                ),
-                decoration:const BoxDecoration(
-                  color: Color.fromARGB(255, 231, 241, 243),
-                  borderRadius: BorderRadius.only(
-                      bottomLeft: Radius.circular(20),
-                      bottomRight: Radius.circular(20),
-                      topLeft: Radius.circular(30),
-                      topRight: Radius.circular(30)),
-                ),
-              );
-              }
-            }
-          ),
-        ],
-      ),
-    );
+                  ),
+                ],
+              ),
+              decoration: const BoxDecoration(
+                color: Color.fromARGB(255, 231, 241, 243),
+                borderRadius: BorderRadius.only(
+                    bottomLeft: Radius.circular(20),
+                    bottomRight: Radius.circular(20),
+                    topLeft: Radius.circular(30),
+                    topRight: Radius.circular(30)),
+              ),
+            )
+          ],
+        ),
+      );
+    });
   }
 }

@@ -28,6 +28,7 @@ class BuildUserBox extends StatelessWidget {
         });
       },
       child: Container(
+        key: ValueKey(userId),
           margin: const EdgeInsets.symmetric(vertical: 10, horizontal: 10),
           decoration: BoxDecoration(
               gradient: LinearGradient(
